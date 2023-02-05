@@ -24,7 +24,7 @@ export const CreateCard :React.FC<Card>  = (card: Card, index) =>{
             border: 'solid 0.5px white',
             position: 'relative'
         }}>
-            <Box bgcolor={theme.palette.secondary.main}>
+            <Box bgcolor={theme.palette.secondary.main} sx={{borderTopLeftRadius: '10px', borderTopRightRadius: '10px'}}>
                 <Typography variant="h5" component="div" sx={{fontSize: {xs: '18px', sm: '22px', md: '28px'}, p: 1, color: theme.palette.secondary.contrastText}}>
                     {card.title} 
                 </Typography>
@@ -40,8 +40,10 @@ export const CreateCard :React.FC<Card>  = (card: Card, index) =>{
                     position: 'absolute',
                     bottom: '0',
                     left: '50%',
-                    transform: 'translate(-50%, -50%)'
+                    transform: 'translate(-50%, -50%)',
+                    color: theme.palette.secondary.contrastText
                 }}
+                onClick={()=> window.location.replace(`#${card.searchId}`)}
             >
                     EXPLORE
             </Button>

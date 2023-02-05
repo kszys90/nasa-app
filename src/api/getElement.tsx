@@ -1,7 +1,7 @@
-const apiURL = 'https://images-api.nasa.gov/asset/'
-const key = 'iUW0etAqmcn0JS3KnhuCMrYS0xa6aEokDEca7nNf'
-export const getData = (itemId: string) => {
-    return fetch(`${apiURL}{${itemId}}&api_key=${key}`)
+const apiURL = 'https://images-api.nasa.gov'
+
+export const getElement = (id: string) => {
+    return fetch(`${apiURL}/asset/${id}`)
       .then(resp => {
         if (resp.ok) {
           return resp.json()

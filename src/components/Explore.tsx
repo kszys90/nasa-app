@@ -10,6 +10,7 @@ import searchImg from '../imgs/search.jpg'
 export interface Card {
     title: string
     img: string
+    searchId: string
 }
 
 export const Explore = ()=>{
@@ -17,22 +18,27 @@ export const Explore = ()=>{
     const cards: Array<Card> = [
         {
             title: 'Astronomic picture of the day',
-            img: apotdImg
+            img: apotdImg,
+            searchId: 'apotd'
         },
         {
             title: 'Mars rover photos',
-            img: marsImg
+            img: marsImg,
+            searchId: 'mars'
+
         },
         {
             title: 'Media search',
-            img: searchImg
+            img: searchImg,
+            searchId: 'search'
+
         }
     ]
     
     
     
     return (
-        <Box sx={{height: {xs: '140vh', lg: '100vh'}, ml: {xs: 2, lg: 5}, mr: {xs: 2, lg: 5}, mt: 15}}>
+        <Box id='explore' sx={{height: {xs: '140vh', lg: '100vh'}, ml: {xs: 2, lg: 5}, mr: {xs: 2, lg: 5}, mt: 15, pt: {xs:'56px', sm:'38px'}}}>
             <Box sx={{height: {xs: '8%', lg: '35vh'}, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <Typography variant="h2" component="div" sx={{textAlign: 'center',fontSize: {xs: 28,sm: 32, md: 50}, mt: {xs: 1, md: 8}, display: {xs: 'block', md: 'block'}}}>
                     Website Content 

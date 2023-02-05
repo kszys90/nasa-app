@@ -4,6 +4,7 @@ import { useAsyncFn } from "react-use";
 import { getAPOTD } from "../api/getAPOTD";
 import { ErrorMessage } from "./ErrorMessage";
 import React from "react";
+import { useTheme } from "@mui/material";
 
 
 export const APOTD = ()=>{
@@ -11,7 +12,8 @@ export const APOTD = ()=>{
     React.useEffect(() => {
         doFetch()
     },[doFetch])
-    
+    const theme = useTheme();
+
     function renderPic (){
         if (state.value){
             return (
@@ -26,7 +28,7 @@ export const APOTD = ()=>{
     }
 
     return (
-        <Box sx={{mt: 15, mb: 15}}>
+        <Box id='apotd' sx={{pt: {xs:'56px', sm:'38px'}, mt: 15, mb: 15}}>
         <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'column', height: '100%'}}>
             <Box sx={{width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column'}}>     
                 <Typography variant="h2" component="h2" sx={{textAlign: 'center',fontSize: {xs: 28,sm: 32, md: 50}, mt: 8}}>
@@ -41,7 +43,17 @@ export const APOTD = ()=>{
                     <ErrorMessage status={state.error.message} />
                     : 
                         !state.value ?
-                            <Typography variant="h2" component="h2" sx={{textAlign: 'center',fontSize: {xs: 28,sm: 32, md: 50}, mt: {xs: 1, md: 8}, display: {xs: 'block', md: 'block'}}}>
+                            <Typography 
+                                variant="h2" 
+                                component="h2" 
+                                sx={{
+                                    textAlign: 'center',
+                                    fontSize: {xs: 28,sm: 32, md: 50}, 
+                                    mt: {xs: 1, md: 8}, 
+                                    display: {xs: 'block', md: 'block'}, 
+                                    color: theme.palette.primary.contrastText
+                                }}
+                            >
                                 No data...
                             </Typography>
                             :
@@ -62,7 +74,9 @@ export const APOTD = ()=>{
                                             fontSize: {xs: 10,sm: 16, md: 25},
                                             cursor: 'pointer',
                                             ml: 2, 
-                                            mr: 2}}
+                                            mr: 2,
+                                            wordBreak: 'break-all'
+                                        }}
                                         onClick={()=>window.open(state.value.hdurl, '_blank')}
                                     >
                                         {state.value.hdurl}

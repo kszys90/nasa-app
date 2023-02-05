@@ -12,7 +12,6 @@ const StyledToolbar = styled(Toolbar)({
     justifyContent: 'space-between'
 })
 
-
 export default function NavBar () {
     const [checked, setChecked] = React.useState(false);
     const dispatch = useDispatch()
@@ -31,9 +30,13 @@ export default function NavBar () {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const handleMenuItemClick = (item: string) => {
+        window.location.replace(`#${item}`)
+        handleClose()
+    }
 
     return (
-    <Box sx={{ flexGrow: 1, height: '10vh', position: 'sticky', zIndex: 999 }}>
+    <Box sx={{ height: '10vh', position: 'sticky', zIndex: 999 }}>
       <AppBar sx={{minHeight: '30px'}}>
         <StyledToolbar sx={{minHeight: {xs: 30}, display: 'flex', justifyContent: 'center'}}>
             <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',  width: '100%', maxWidth: '1000px'}}>
@@ -60,31 +63,38 @@ export default function NavBar () {
                     'aria-labelledby': 'menu-button',
                 }}
                 >
-                <MenuItem sx={{color: 'white'}} onClick={handleClose}>Astronomic picture of the day</MenuItem>
-                <MenuItem sx={{color: 'white'}} onClick={handleClose}>Mars Rover Photos</MenuItem>
-                <MenuItem sx={{color: 'white'}} onClick={handleClose}>Media search</MenuItem>
+                <MenuItem sx={{color: 'white'}} onClick={()=>handleMenuItemClick('home')}>Home</MenuItem>
+                <MenuItem sx={{color: 'white'}} onClick={()=>handleMenuItemClick('explore')}>Web content</MenuItem>
+                <MenuItem sx={{color: 'white'}} onClick={()=>handleMenuItemClick('apotd')}>Astronomic picture of the day</MenuItem>
+                <MenuItem sx={{color: 'white'}} onClick={()=>handleMenuItemClick('mars')}>Mars Rover Photos</MenuItem>
+                <MenuItem sx={{color: 'white'}} onClick={()=>handleMenuItemClick('search')}>Media search</MenuItem>
             </Menu>
                 <Button 
                     color="inherit" 
                     sx={{mr: 2, display: {xs: 'none', sm: 'block'}}}
+                    onClick={()=> window.location.replace('#home')}                   
                     >
                     Home
                 </Button>
                 <Button 
                     color="inherit" 
                     sx={{mr: 2, display: {xs: 'none', sm: 'block'}}}
+                    onClick={()=> window.location.replace('#apotd')}                   
                     >
-                    APOTD
+                    Picture of the day
                 </Button>
                 <Button 
                     color="inherit" 
                     sx={{mr: 2, display: {xs: 'none', sm: 'block'}}}
+                    onClick={()=> window.location.replace('#mars')}
                     >
                         MARS
                 </Button>
                 <Button 
                     color="inherit" 
                     sx={{mr: 2, display: {xs: 'none', sm: 'block'}}}
+                    onClick={()=> window.location.replace('#search')}                   
+
                     >
                         SEARCH
                 </Button>
